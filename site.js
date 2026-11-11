@@ -17,10 +17,11 @@ c.addEventListener('blur',function(){v.pause();v.currentTime=0})});
 var scene=document.querySelector('.scene');if(!scene)return;
 var st=scene.querySelector('.stage0'),stm=scene.querySelector('.statement'),ps=[].slice.call(scene.querySelectorAll('.pillar'));
 var N=ps.length,mob=function(){return window.innerWidth<=860};
+if(window.innerWidth<=860){ps.forEach(function(p){p.parentNode&&p.parentNode.removeChild(p)});ps=[];N=0}
 function cl(x,a,b){return Math.max(a,Math.min(b,x))}
 function ez(t){return t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2}
 function vid(p,on){var v=p.querySelector('video');if(!v)return;v.muted=true;if(on&&!rm){v.play().catch(function(){})}else{v.pause()}}
-var gEl=scene.querySelector('.g'),gCells=gEl?[].slice.call(gEl.children):[],gRun=false,gDone=false,gTm=[];
+var gEl=scene.querySelector('.tg'),gCells=gEl?[].slice.call(gEl.children):[],gRun=false,gDone=false,gTm=[];
 // each pattern: 10 letters per axis; w=white 60, k=charcoal 30, a=accent 10; by column (c) or row (r)
 var GP=[['c','wwwwwwkkka'],['c','akkkwwwwww'],['r','wwwwwwkkka'],['r','akkkwwwwww'],['c','kwwkwwkwwa']],GS=[[0,0],[1,1],[2,2],[3,0],[4,1],[0,0]];
 function gPaint(pi,pal){var P=GP[pi];gEl.setAttribute('data-p',pal);gCells.forEach(function(el,n){var r=Math.floor(n/10),c=n%10,ch=P[1].charAt(P[0]==='c'?c:r);el.className=ch==='w'?'':ch;el.style.transitionDelay=((r+c)*30)+'ms'})}
