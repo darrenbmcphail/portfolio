@@ -73,10 +73,6 @@ figure{margin-top:40px}
 figure img,figure video{border-radius:0 40px 0 40px;width:100%;background:var(--paper2)}
 figure.flat img,figure.flat video{border-radius:14px}
 figcaption{margin-top:10px;font-size:12px;color:var(--mu)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:40px}
-.grid figure{margin:0}
-.grid.two{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
-.grid img{border-radius:14px;width:100%}
 .tile{border-radius:14px;overflow:hidden;background:var(--paper2)}
 .tile img{width:100%;border-radius:0}
 .pair{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
@@ -193,26 +189,6 @@ body{background-image:none}
 
 /* v6: title on a top gradient, contained media, animated 60/30/10 grid */
 .pillar .m.tri{background:#111}
-.g{position:absolute;left:0;right:0;bottom:0;top:40%;--a:#e4002b;--af:#fff;--b:#111;--bf:#fff;--c:#fff;--cf:#111}
-.g[data-p="1"]{--a:#50c0ef;--af:#111}
-.g[data-p="2"]{--a:#1ad742;--af:#111}
-.g b{position:absolute;box-sizing:border-box;display:flex;align-items:flex-start;justify-content:flex-end;padding:clamp(10px,1.4vw,22px);font-family:'Familjen Grotesk','Instrument Sans',Arial,sans-serif;font-weight:700;font-size:clamp(24px,3.4vw,56px);line-height:1;transition:left 1.1s cubic-bezier(.65,0,.35,1),top 1.1s cubic-bezier(.65,0,.35,1),width 1.1s cubic-bezier(.65,0,.35,1),height 1.1s cubic-bezier(.65,0,.35,1),background-color .9s,color .9s}
-.g em{font-style:normal}
-.g .c60{background:var(--a);color:var(--af)}
-.g .c30{background:var(--b);color:var(--bf)}
-.g .c10{background:var(--c);color:var(--cf)}
-.g[data-l="0"] .c60{left:0;top:0;width:100%;height:60%}
-.g[data-l="0"] .c30{left:0;top:60%;width:100%;height:30%}
-.g[data-l="0"] .c10{left:0;top:90%;width:100%;height:10%}
-.g[data-l="1"] .c60{left:0;top:0;width:60%;height:100%}
-.g[data-l="1"] .c30{left:60%;top:0;width:30%;height:100%}
-.g[data-l="1"] .c10{left:90%;top:0;width:10%;height:100%}
-.g[data-l="2"] .c60{left:0;top:0;width:60%;height:100%}
-.g[data-l="2"] .c30{left:60%;top:0;width:40%;height:75%}
-.g[data-l="2"] .c10{left:60%;top:75%;width:40%;height:25%}
-.g[data-l="3"] .c60{left:0;top:0;width:100%;height:60%}
-.g[data-l="3"] .c30{left:0;top:60%;width:75%;height:40%}
-.g[data-l="3"] .c10{left:75%;top:60%;width:25%;height:40%}
 @media(min-width:861px){
 .pillar .m video{inset:auto;left:50%;top:40%;width:min(1100px,70vw,calc((100vh - 52px) * .56 * 1.7778));height:auto;aspect-ratio:16/9;transform:translateX(-50%);object-fit:contain}
 .pillar .cap{top:0;bottom:auto;padding-top:clamp(28px,5vh,56px);padding-bottom:clamp(40px,7vh,80px);background:linear-gradient(#fff 0,rgba(255,255,255,.94) 55%,rgba(255,255,255,0))}
@@ -220,3 +196,20 @@ body{background-image:none}
 .pillar h2{font-size:clamp(40px,6vw,96px);line-height:1.02}
 }
 @media(min-width:861px){.pillar h2{max-width:none;white-space:nowrap}.pillar p{max-width:none}}
+
+/* v7: connected 60/30/10 stack, image reels */
+.pillar .m{background:#fff}.pillar .m.tri{background:#111}
+.reel{position:absolute;left:0;right:0;top:0;bottom:0;overflow:hidden;background:#fff}
+.reel .trk{display:flex;gap:clamp(12px,1.4vw,24px);height:100%;width:max-content;padding-right:clamp(12px,1.4vw,24px)}
+.pillar .m .reel img{position:static;inset:auto;width:auto;height:100%;flex:0 0 auto;object-fit:cover}
+.pillar.on .reel .trk{animation:reel 60s linear infinite}
+@keyframes reel{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.pillar.on .reel .trk{animation:none}}
+@media(min-width:861px){.reel{top:40%;bottom:6vh;background:transparent}}
+
+/* v8: 60/30/10 as white, charcoal, accent, rearranging across a 10 x 10 grid */
+.g{position:absolute;left:0;right:0;bottom:0;top:40%;display:grid;grid-template-columns:repeat(10,1fr);grid-template-rows:repeat(10,1fr);--a:#e4002b;background:#fff}
+.g[data-p="1"]{--a:#50c0ef}.g[data-p="2"]{--a:#1ad742}
+.g b{display:block;background:#fff;box-shadow:0 0 0 .6px #fff;transition:background-color .7s ease,box-shadow .7s ease}
+.g b.k{background:#2b2b2b;box-shadow:0 0 0 .6px #2b2b2b}
+.g b.a{background:var(--a);box-shadow:0 0 0 .6px var(--a)}
