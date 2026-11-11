@@ -237,3 +237,6 @@ aside.meta ol,aside.meta p.label{display:none}
 .stage .ims img:only-child{flex-basis:100%;width:100%}
 .hero h1{font-size:clamp(38px,11vw,56px)}
 }
+/* v10: caption must span the full panel width on any screen */
+.pillar .cap{box-sizing:border-box;width:100vw;max-width:none;font-size:inherit;color:inherit}
+@media(min-width:861px){.pillar p{max-width:560px}}
